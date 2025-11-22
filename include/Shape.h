@@ -1,31 +1,28 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-// Ödev kuralı: Başlık dosyasında sadece tanımlar olur, kod gövdesi olmaz[cite: 21].
+// İleri bildirim: Screen sınıfı diye bir şey var, haberin olsun.
+class Screen;
 
 class Shape
 {
 protected:
-    // protected: Miras alan sınıflar (Triangle vb.) bu değişkenleri görebilsin diye private yapmadık.
-    int x, y;    // Koordinatlar [cite: 9]
-    int height;  // Boyutlar [cite: 9]
-    char symbol; // Çizim karakteri [cite: 9]
-    int z;       // Çizim önceliği (derinlik) [cite: 9]
+    int x, y;
+    int height;
+    char symbol;
+    int z;
 
 public:
-    // Kurucu Fonksiyon (Constructor)
     Shape(int x, int y, int height, char symbol, int z);
-
-    // Yıkıcı Fonksiyon (Destructor) - Virtual olmak zorunda!
     virtual ~Shape();
 
-    // Saf Sanal Fonksiyon (Pure Virtual Function)
-    // = 0 demek: "Bu metodun gövdesi yok, türeten sınıf (Triangle vb.) bunu KENDİSİ yazmak ZORUNDA" demektir.
-    virtual void draw() = 0;
+    // GÜNCELLEME: Artık çizim için Screen nesnesini alıyor
+    virtual void draw(Screen *screen) = 0;
 
-    // Yardımcı Fonksiyonlar
-    int getZ() const;              // Z değerini okumak için (sıralamada lazım olacak)
-    void move(int newX, int newY); // Şekli hareket ettirmek için [cite: 14]
+    int getZ() const;
+    void move(int newX, int newY);
+    int getX() const { return x; }
+    int getY() const { return y; }
 };
 
 #endif
