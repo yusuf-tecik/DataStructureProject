@@ -23,6 +23,10 @@ public:
     void move(int newX, int newY);
     int getX() const { return x; }
     int getY() const { return y; }
+    virtual int getWidth() const = 0;
+    virtual int getType() const = 0;
+    int getHeight() const { return height; }
+    char getSymbol() const { return symbol; }
 };
 
 #endif

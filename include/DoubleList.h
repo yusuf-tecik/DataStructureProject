@@ -17,6 +17,7 @@ public:
 
     // İleride buraya aşağı/yukarı gitme fonksiyonları da gelecek
     MainNode *getHead() const;
+    void removeNode(MainNode *node);
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Screen.h"
 
 // Kurucu fonksiyonun gövdesi
 Shape::Shape(int x, int y, int height, char symbol, int z)
@@ -23,8 +24,28 @@ int Shape::getZ() const
 }
 
 // Hareket ettirme fonksiyonu
-void Shape::move(int newX, int newY)
+void Shape::move(int dx, int dy)
 {
-    this->x = newX;
-    this->y = newY;
+    // Ekran boyutlarını Screen.h'den alıyoruz (önceki adımda include etmiştik)
+    // Eğer include "Screen.h" yoksa dosyanın başına ekle.
+
+    int nextX = this->x + dx;
+    int nextY = this->y + dy;
+
+    int myWidth = this->getWidth(); // Artık genişliği biliyoruz!
+
+    // KATI DUVAR KONTROLÜ:
+    // Sol Duvar: nextX >= 0 olmalı
+    // Sağ Duvar: nextX + genişlik <= SCREEN_WIDTH olmalı (Eşitlik sınıra değmeye izin verir)
+    // Üst Duvar: nextY >= 0 olmalı
+    // Alt Duvar: nextY + yükseklik <= SCREEN_HEIGHT olmalı
+
+    bool xValid = (nextX >= 0) && (nextX + myWidth <= SCREEN_WIDTH);
+    bool yValid = (nextY >= 0) && (nextY + height <= SCREEN_HEIGHT);
+
+    if (xValid && yValid)
+    {
+        this->x = nextX;
+        this->y = nextY;
+    }
 }

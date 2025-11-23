@@ -15,6 +15,8 @@ public:
 
     // GÜNCELLEME
     void draw(Screen *screen) override;
+    int getWidth() const override { return width; }
+    int getType() const override { return 0; }
 };
 
 #endif

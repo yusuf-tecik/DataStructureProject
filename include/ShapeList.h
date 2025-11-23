@@ -15,6 +15,8 @@ public:
     void add(Shape *shape);       // Listeye yeni şekil ekler
     void drawAll(Screen *screen); // Test için: Listedeki şekilleri çizer
     ShapeNode *getHead() const;
+    void remove(ShapeNode *node);
+    int getSize() const;
 };
 
 #endif

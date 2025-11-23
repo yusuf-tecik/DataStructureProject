@@ -55,3 +55,29 @@ MainNode *DoubleList::getHead() const
 {
     return head;
 }
+
+void DoubleList::removeNode(MainNode *node)
+{
+    if (head == nullptr || node == nullptr)
+        return;
+
+    // Eğer silinecek düğüm baştaysa
+    if (head == node)
+    {
+        head = head->next;
+        if (head != nullptr)
+            head->prev = nullptr;
+    }
+    else
+    {
+        // Aradan veya sondan silme
+        if (node->prev != nullptr)
+            node->prev->next = node->next;
+
+        if (node->next != nullptr)
+            node->next->prev = node->prev;
+    }
+
+    // Düğümü hafızadan sil (Yıkıcısı içindeki ShapeList'i de silecek)
+    delete node;
+}
